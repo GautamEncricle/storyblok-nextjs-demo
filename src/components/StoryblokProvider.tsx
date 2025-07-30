@@ -18,8 +18,7 @@ storyblokInit({
         feature: Feature,
         Testimonial: Testimonial,
         recommended_tours: RecommendedTours
-  },
-  enableFallbackComponent: true,
+  }
 });
 
 const StoryblokProvider = ({ children }: PropsWithChildren) => {
