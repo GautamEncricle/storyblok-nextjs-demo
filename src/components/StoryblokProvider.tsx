@@ -1,0 +1,32 @@
+"use Client";
+import type { PropsWithChildren } from "react";
+import { storyblokInit } from "@storyblok/react";
+import { Tour } from './Tour'
+import { Page } from "./Page";
+import { Hero } from "./Hero";
+import { Grid } from "./Grid";
+import { Feature } from "./Feature";
+import { Testimonial } from "./Testimonial";
+import { RecommendedTours } from "./RecommendedTours";
+import FallbackComponent from "./FallbackComponent";
+
+storyblokInit({
+    components: {
+        tour: Tour,
+        page: Page,
+        hero: Hero,
+        grid: Grid,
+        feature: Feature,
+        Testimonial: Testimonial,
+        recommended_tours : RecommendedTours
+  },
+  enableFallbackComponent: true,
+  fallbackComponent: FallbackComponent,
+});
+
+const StoryblokProvider = ({ children }: PropsWithChildren) => {
+    return <>
+    {children}
+    </>
+};
+export default StoryblokProvider;
