@@ -4,6 +4,8 @@ import path from "path";
 const nextConfig: NextConfig = {
   images: {
     domains: ["a.storyblok.com"],
+    loader: "custom",
+    loaderFile: "./src/storyblokImageLoader.js",
   },
   webpack: (config) => {
     config.resolve.alias = {

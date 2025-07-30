@@ -1,4 +1,5 @@
 import { RecommendedTour } from "./RecommendedTour";
+import { storyblokEditable } from "@storyblok/react";
 
 interface Tour {
   content: {
@@ -25,7 +26,9 @@ interface RecommendedToursProps {
 
 export const RecommendedTours = ({ blok }: RecommendedToursProps) => {
   return (
-    <section className="py-16 container mx-auto px-4 w-full">
+    <section
+      {...storyblokEditable(blok)}
+      className="py-16 container mx-auto px-4 w-full">
       <h2 className="text-3xl md:text-4xl font-semibold text-center">
         {blok.headline}
       </h2>

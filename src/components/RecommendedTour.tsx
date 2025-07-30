@@ -27,8 +27,11 @@ export const RecommendedTour = (props: RecommendedTourProps) => {
       {props.story.content.main_image?.filename ? (
         <img
           className="aspect-video w-full object-cover"
-          src={props.story.content.main_image.filename}
+          src={`${props.story.content.main_image.filename}/m/736x414/filters:quality(10)`}
+          width={736}
+          height={414}
           alt={props.story.content.main_image.alt || props.story.content.name}
+          loading={"lazy"}
         />
       ) : (
         <div className="aspect-video w-full bg-gray-200 flex items-center justify-center">

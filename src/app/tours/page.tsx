@@ -1,5 +1,6 @@
 import { getStoryblokApi, StoryblokStory } from "@storyblok/react/rsc";
 import { RecommendedTour } from "@/components/RecommendedTour";
+import { draftMode } from "next/headers";
 
 interface MainImage {
   filename: string;
@@ -23,6 +24,18 @@ interface Tour {
 
 export const dynamic = 'force-dynamic';
 
+const fetchToursPage = async () => {
+  const { isEnabled } = await draftMode();
+  const client = getStoryblokApi();
+  const response = await client.getStory(`tours`, {
+    version:
+      process.env.NODE_ENV === "development" || isEnabled
+        ? "draft"
+        : "published",
+  });
+  return response.data.story;
+};
+
 const fetchAllTours = async (): Promise<Tour[]> => {
   const client = getStoryblokApi();
   const response = await client.getStories({
@@ -38,6 +51,7 @@ const fetchAllTours = async (): Promise<Tour[]> => {
 
 const ToursPage = async () => {
   const toursRaw = await fetchAllTours();
+  const story = await fetchToursPage();
 
   // Map tours to expected shape for RecommendedTour component
   const tours: Tour[] = toursRaw.map((tour) => ({
@@ -53,7 +67,7 @@ const ToursPage = async () => {
 
   return (
     <div>
-      <StoryblokStory story={tours} />
+      <StoryblokStory story={story} />
       <div className="grid md:grid-cols-2 gap-8 container mx-auto px-4 w-full py-16">
         {tours.map((tour) => (
           <RecommendedTour story={tour} key={tour._uid} />

@@ -1,5 +1,5 @@
+import { renderRichText, storyblokEditable } from "@storyblok/react/rsc";
 import Image from "next/image";
-import { renderRichText } from "@storyblok/react/rsc";
 
 // interface MainImage {
 //   filename: string;
@@ -15,7 +15,9 @@ import { renderRichText } from "@storyblok/react/rsc";
 
 export const Tour = (props: any) => {
   return (
-    <main className="container mx-auto w-full px-4 pt-32 pb-16">
+    <main
+      {...storyblokEditable(props.blok)}
+      className="container mx-auto w-full px-4 pt-32 pb-16">
       {/* Heading */}
       <h1 className="text-center text-3xl md:text-5xl font-bold text-gray-900 tracking-tight">
         {props.blok.name}
@@ -23,12 +25,12 @@ export const Tour = (props: any) => {
 
       {/* Main Image */}
       {props.blok.main_image?.filename && (
-        <img
+        <Image
           src={props.blok.main_image.filename}
           alt={props.blok.main_image.alt || props.blok.name}
-          // width={800}
-          // height={450}
-          className="mt-10 w-full max-w-4xl mx-auto rounded-2xl shadow-md object-cover w-[800] h-[450]"
+          width={800}
+          height={450}
+          className="mt-10 w-full max-w-4xl mx-auto rounded-2xl shadow-md object-cover"
         />
       )}
 

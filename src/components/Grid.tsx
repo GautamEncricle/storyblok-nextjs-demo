@@ -1,4 +1,4 @@
-import { StoryblokComponent } from "@storyblok/react";
+import { StoryblokComponent, storyblokEditable } from "@storyblok/react";
 
 interface GridProps {
   blok: {
@@ -9,7 +9,7 @@ interface GridProps {
 
 export const Grid = ({ blok }: GridProps) => {
   return (
-    <section className="bg-blue-100">
+    <section  {...storyblokEditable(blok)} className="bg-blue-100">
       <div className="container mx-auto px-4 w-full">
         <h2 className="text-amber-300xl text-center md:text-6xl font-semibold">
           {blok.headline}
