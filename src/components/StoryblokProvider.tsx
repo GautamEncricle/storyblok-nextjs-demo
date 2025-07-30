@@ -8,7 +8,6 @@ import { Grid } from "./Grid";
 import { Feature } from "./Feature";
 import { Testimonial } from "./Testimonial";
 import { RecommendedTours } from "./RecommendedTours";
-import FallbackComponent from "./FallbackComponent";
 
 storyblokInit({
     components: {
@@ -18,10 +17,9 @@ storyblokInit({
         grid: Grid,
         feature: Feature,
         Testimonial: Testimonial,
-        recommended_tours : RecommendedTours
+        recommended_tours: RecommendedTours
   },
   enableFallbackComponent: true,
-  fallbackComponent: FallbackComponent,
 });
 
 const StoryblokProvider = ({ children }: PropsWithChildren) => {
